@@ -158,9 +158,13 @@ function draw() {
   if(mousePressedOver(level2) && wealth > 499) {
   tboxi3 = createSprite(displayWidth/1,displayHeight/2, displayWidth-50, displayHeight-50)
   var lm2 = 0
-  if(mousePressed()) {
+  if(mousePressed() && lm2 < 7) {
   lm2 = lm2+1  
   }
+  if(lm2 > 4 && lm2 < 7) {
+  if(mousePressedOver(cboxii) || mousePressedOver(cboxii2)) {
+  lm2 = lm2  
+  }  
   if(lm2 === 0) {
   text("Sir, there is another problem, at LOC pakistan has increased it's forces", tboxi3.x, tboxi3.y)  
   }
@@ -186,11 +190,20 @@ function draw() {
   if(mousePressedOver(cboxii) && lm2 === 6) {
   text("try to negotiate with Pakistan", cboxii.x, cboxii.y)
   text("send men back to Pakistan border after things calm down". cboxii2.x, cboxii2.y)
+  if(mousePressedOver(cboxii2) && lm2 === 7) {
+  textSize(50)
+  textFont(Algerian)
+  text("after 12 days", displayWidth/2, displayHeight/2)  
+  
+  }
+  if(mousePressedOver(cboxii2) && lm2 === 7) {
+  
+  }  
   }
   if(mousePressedOver(cboxii2) && lm2 === 6) {
   text("try to negotiate with China", cboxii.x, cboxii.y)
   text("send men back to China border after things calm down". cboxii2.x, cboxii2.y)
-  }
+  }  
   }
   }
   
