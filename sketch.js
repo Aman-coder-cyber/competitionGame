@@ -1,15 +1,16 @@
 var gameState, play, level1, level2, level3, level4, level5, map, finance, military
 var heath, police, education, otherGames, respect, g1, g2
-function preload() {
-  doctorr = loadImage(doctor.png)
-  engineerr = loadImage(engineer.png)
-  policee = loadImage(police.png)
-  policee2 = loadImage(police2.png)
+ function preload() {
+  doctorr = loadImage('doctor.png')
+  engineerr = loadImage('engineer.png')
+  policee = loadImage('police.png')
+  policee2 = loadImage('police2.png')
 
-  startbg = loadImage(gateway.jpg)
-  mapi = loadImage(mapI.png)
+  startbg = loadImage('gateway.jpg')
+  mapi = loadImage('mapI.png')
 
 }
+
 function setup() {
   createCanvas(displayWidth, displayHeight);
   level1 = createSprite(displayWidth/1.7, displayHeight/6, 50, 50)
@@ -18,46 +19,113 @@ function setup() {
   level4 = createSprite(displayWidth/6.8, displayHeight/6, 50, 50)
   level5 = createSprite(displayWidth/1.7, displayHeight/3, 50, 50)
   intro = createSprite(displayWidth/2, displayHeight/2, 50, 50)
+  
+  backgroundemg = createSprite(displayWidth/2, displayHeight/2, displayWidth, displayHeight)
+  play1 = createSprite(displayWidth/2, displayHeight/1.5, 100, 50)
+  logo = createSprite(displayWidth/2, displayHeight/3, 500, 100)
+  
+  g1 = createSprite(displayWidth/8, displayHeight/5, 100, 100)
+  g2 = createSprite(displayWidth/8, displayHeight/2.5, 100, 100) 
+  g3 = createSprite(displayWidth/16, displayHeight/5, 100, 100)
+  g4 = createSprite(displayWidth/16, displayHeight/2.5, 100, 100)
 
-}
-
-function draw() {
-  background("yellow");
+  ebackground = createSprite(displayWidth/2, displayHeight/2, displayWidth, displayHeight)
+  eImage = createSprite(displayWidth/1.5, displayHeight/1.5, 500, 100)
+  eImage2 = createSprite(displayWidth/8, displayHeight/1.5, 500, 100)
+  
+  map = createSprite(displayWidth/2, displayHeight/2, 100, 100)
+  finance = createSprite(displayWidth/4, displayHeight/4, 100, 100)
+  military = createSprite(displayWidth/4, displayHeight/8, 100, 100)
+  police = createSprite(displayWidth/8, displayHeight/8, 100, 100)
+  health = createSprite(displayWidth/8, displayHeight/4, 100, 100)
+  education = createSprite(displayWidth/8, displayHeight/2, 100, 100)
+  otherGames =  createSprite(displayWidth/4, displayHeight/2, 100, 100)
+  
   level1.visible = false;
   level2.visible = false;
   level3.visible = false;
   level4.visible = false;
   level5.visible = false;
+  intro.visible = false;
 
+  backgroundemg.visible = false
+  play1.visible = false
+  logo.visible = false 
+  
+  g1.visible = false
+  g2.visible = false
+  g3.visible = false
+  g4.visible = false
+
+  ebackground.visible = false
+  eImage.visible = false
+  eImage2.visible = false
+  
+  
+  map.visible = false
+  finance.visible = false
+  military.visible = false
+  police.visible = false
+  health.visible = false
+  education.visible = false
+  otherGames.visible = false
+}
+
+function draw() {
+  background("yellow");
+  
+
+ 
   gameState = 0
   respect = 0
   wealth = 0
 
   if(gameState == 0) {
-  start();
+  backgroundemg.visible = true
+  play1.visible = true
+  logo.visible = true
+  if(mousePressed(play1)) {
+  gameState = 1  
+  } 
+  }
+  if(gameState == 1) {
+  map.visible = true
+  finance.visible = true
+  military.visible = true
+  police.visible = true
+  health.visible = true
+  education.visible = true
+  otherGames.visible = true
   }
   
-  if(mousePressedOver(police) || mousePressedOver(health) || mousePressedOver(finance) | mousePressedOver(education) || mousePressedOver(military)) {
+  if(mousePressed(police) || mousePressed(health) || mousePressed(finance) | mousePressed(education) || mousePressed(military)) {
   level1.visible = true;
   level2.visible = true;
   level3.visible = true;
   level4.visible = true;
   level5.visible = true;
+  intro.visible = true;
   back = createSprite(displayWidth/34, displayHeight/34, 100, 40)
-  if(mousePressedOver(back)) {
+  ebackground.visible = true
+  eImage.visible = true
+  eImage2.visible = true
+  if(mousePressed(back)) {
     gameState = gameState-1
   }
   gameState = gameState+1
-  if(mousePressedOver(police)) {
+  if(mousePressed(police)) {
   police();
+
     
   }
-  if(mousePressedOver(military) {
+  if(mousePressed(military)) {
   military();
-  if(mousePressedOver(intro)) {
-  var i = 0
-  bg = createSprite(displayWidth/2, displayHeight/2, displayWidth, displayHeight)
-  tbox = createSprite(displayWidth/2, displayHeight/1,5, displayWidth-50, displayHeight-50)  
+  }
+  if(mousePressed(intro)) {
+  var i = 0;
+  bg = createSprite(displayWidth/2, displayHeight/2, displayWidth, displayHeight);
+  tbox = createSprite(displayWidth/2, displayHeight/1,5, displayWidth-50, displayHeight-50);
+  cha1 = createSprite(displayWidth/2, displayHeight/2, 250, 250) 
   if(mousePressed()) {
   i = i+1  
   }
@@ -81,10 +149,11 @@ function draw() {
   gameState = 1
   i.destroy  
   }
-  }  l
-  if(mousePressedOver(level1)) {
+  }
+  if(mousePressed(level1)) {
    var lm = 0
-   tboxi2 = createSprite(displayWidth/1.5, displayHeight/2, displayWidth-50, displayHeight-displayHeight*1/3)
+   tboxi2 = createSprite(displayWidth/1.5, displayHeight/2, displayWidth-50, displayHeight-displayHeight*1/3);
+  
    if(mousePressed()) {
    lm = lm + 1 
    } 
@@ -102,13 +171,15 @@ function draw() {
   cbox2 = createSprite(displayWidth/8, displayHeight/2, displayWidth-50, displayHeight-displayHeight*1/3)
   text("increase army", cbox.x, cbox.y)
   text("leave as it is", cbox2.x, cbox2.y)
-  if(mousePressedOver(cbox)) {
+  if(mousePressed(cbox) && lm === 4) {
   text("bring 20 men from region 15, will take 5 days", cbox.x, cbox.y)
   text("bring 40 men from region 30, will take 10 days", cbox2.x, cbox2.y)
-  if(mousePressedOver(cbox2) && lm === 5) {
+  }
+  }
+  if(mousePressed(cbox2) && lm === 5) {
   text("after 9 days", displayWidth/2, displayHeight/2)
   if(lm === 6) {
-  text("Sir, china has invaded area 20." tboxi2.x, tboxi2.y)  
+  text("Sir, china has invaded area 20.", tboxi2.x, tboxi2.y)  
   }
   if(lm === 7) {
   textSize(50)
@@ -121,7 +192,7 @@ function draw() {
   lm.destroy  
   }
   }
-  if(mousePressedOver(cbox) && lm === 5) {
+  if(mousePressed(cbox) && lm === 5) {
   text("Sir, the men have reached there succesfully", tbox.x, tbox.y)
   if(lm === 6) {
   text("Now there is no threat to area 20", tbox.x, tbox.y) 
@@ -138,11 +209,11 @@ function draw() {
   lm.destroy  
   } 
   }
-  if(mousePressedOver(cbox2)) {
+  if(mousePressed(cbox2) && lm === 3) {
   text("after 9 days", displayWidth/2, displayHeight/2)
-  }
+  
   if(lm === 5) {
-  text("Sir, china has invaded area 20." tboxi2.x, tboxi2.y)  
+  text("Sir, china has invaded area 20.", tboxi2.x, tboxi2.y)  
   }
   if(lm === 6) {
   textSize = 50
@@ -155,14 +226,17 @@ function draw() {
   lm.destroy  
   }
   }
-  if(mousePressedOver(level2) && wealth > 499) {
-  tboxi3 = createSprite(displayWidth/1,displayHeight/2, displayWidth-50, displayHeight-50)
-  var lm2 = 0
-  if(mousePressed() && lm2 < 7) {
+  
+  
+  if(mousePressed(level2) && mousePressed(wealth > 499)){
+  tboxi3 = createSprite(displayWidth/1,displayHeight/2, displayWidth-50, displayHeight-50);
+  var lm2 = 0;
+  }
+  if(mousePressed(lm1) && mousePressed(lm2) < 7) {
   lm2 = lm2+1  
   }
   if(lm2 > 4 && lm2 < 7) {
-  if(mousePressedOver(cboxii) || mousePressedOver(cboxii2)) {
+  if(mousePressed(cboxii) || mousePressed(cboxii2)) {
   lm2 = lm2  
   }  
   if(lm2 === 0) {
@@ -187,32 +261,32 @@ function draw() {
   text("increase military in China region, takes 10 days", cboxii.x, cboxii.y)
   text("increase military in Pakistan, takes 2 days", cboxii.x, cboxii.y)
   }
-  if(mousePressedOver(cboxii) && lm2 === 6) {
+  if(mousePressed(cboxii) && lm2 === 6) {
   text("try to negotiate with Pakistan", cboxii.x, cboxii.y)
   text("send men back to Pakistan border after things calm down". cboxii2.x, cboxii2.y)
-  if(mousePressedOver(cboxii2) && lm2 === 7) {
+  if(mousePressed(cboxii2) && lm2 === 7) {
   textSize(50)
   textFont(Algerian)
   text("after 12 days", displayWidth/2, displayHeight/2)  
   
   }
-  if(mousePressedOver(cboxii2) && lm2 === 7) {
+  if(mousePressed(cboxii2) && lm2 === 7) {
   
   }  
   }
-  if(mousePressedOver(cboxii2) && lm2 === 6) {
+  if(mousePressed(cboxii2) && lm2 === 6) {
   text("try to negotiate with China", cboxii.x, cboxii.y)
   text("send men back to China border after things calm down". cboxii2.x, cboxii2.y)
   }  
   }
   }
   
-  if(mousePressedOver(health)) {
+  if(mousePressed(health)) {
   health();  
-  if(mousePressedOver(intro)) {
+  if(mousePressed(intro)) {
   var h = 0
   bg2 = createSprite(displayWidth/2, displayHeight/2, displayWidth, displayHeight)
-  tbox2 = createSprite(displayWidth/1,2. displayHeight/2, displayWidth-50, displayHeight-displayHeight*1/3)
+  tbox2 = createSprite(displayWidth/1,2, displayHeight/2, displayWidth-50, displayHeight-displayHeight*1/3)
   ran = createSprite(displayWidth/2, displayHeight/2, 50, 50)  
   if(mousePressed()) {
   h = h+1  
@@ -235,12 +309,13 @@ function draw() {
   h.destroy  
   }
   }
-  if(mousePressedOver(education) {
+  }
+  if(mousePressed(education)) {
   education();
-  if(mousePressedOver(intro)) {
+  if(mousePressed(intro)) {
   var e = 0
   bg3 = createSprite(displayWidth/2, displayHeight/2, displayWidth, displayHeight)
-  tbox3 = createSprite(displayWidth/1,2. displayHeight/2, displayWidth-50, displayHeight-50)  
+  tbox3 = createSprite(displayWidth/1,2, displayHeight/2, displayWidth-50, displayHeight-50)  
   if(mousePressed()) {
   e = e+1  
   }
@@ -263,12 +338,12 @@ function draw() {
   }
   }  
   }
-  if(mousePressedOver(finacne) {
+  if(mousePressed(finacne) ){
   finance();
-  if(mousePressedOver(intro)) {
+  if(mousePressed(intro)) {
   var f = 0
   bg4 = createSprite(displayWidth/2, displayHeight/2, displayWidth, displayHeight)
-  tbox4 = createSprite(displayWidth/1,2. displayHeight/2, displayWidth-50, displayHeight-50)  
+  tbox4 = createSprite(displayWidth/1,2, displayHeight/2, displayWidth-50, displayHeight-50)  
   if(mousePressed()) {
   f = f+1  
   }
@@ -281,7 +356,7 @@ function draw() {
   }
   if(f === 2) {
   text("We are at your service.", tbox.x, tbox.y)  
-
+  }
   if(f === 3) {
   text("It is  our honour to work with you")  
   }
@@ -293,17 +368,17 @@ function draw() {
   }
   }
   
-  if(mousePressedOver(play)) {
+  if(mousePressed(play)) {
   gameState = 1  
 }
   if(gameState == 1) {
   home();  
   }
-  if(mousePressedOver(g1)) {
+  if(mousePressed(g1)) {
   g1();  
   
   }
-  if(mousePressedOver(g2)) {
+  if(mousePressed(g2)) {
   g2();  
   }
 
@@ -311,56 +386,32 @@ function draw() {
   drawSprites();
 }
 
-function start() {
-  background = createSprite(displayWidth/2, displayHeight/2, displayWidth, displayHeight)
-  play = createSprite(displayWidth/2, displayHeight/1.5, 100, 50)
-  logo = createSprite(displayWidth/2, displayHeight/3, 500, 100)
+function begin() {
+  
 
 }
 function home() {
-  map = createSprite(displayWidth/2, displayHeight/2, 100, 100)
-  finance = createSprite(displayWidth/4, displayHeight/4, 100, 100)
-  military = createSprite(displayWidth/4, displayHeight/8, 100, 100)
-  police = createSprite(displayWidth/8, displayHeight/8, 100, 100)
-  health = createSprite(displayWidth/8, displayHeight/4, 100, 100)
-  education = createSprite(displayWidth/8, displayHeight/2, 100, 100)
-  otherGames =  createSprite(displayWidth/4, displayHeight/2, 100, 100)
-
+  
   map.addImage("ma", mapi)  
 }
 function military() {
-  m-background = createSprite(displayWidth/2, displayHeight/2, displayWidth, displayHeight)
-  mImage = createSprite(displayWidth/1.5, displayHeight/1.5, 500, 100)
-  mImage2 = createSprite(displayWidth/8, displayHeight/1.5, 500, 100)
+  
 }
 function finance() {
-  n-background = createSprite(displayWidth/2, displayHeight/2, displayWidth, displayHeight)
-  nImage = createSprite(displayWidth/1.5, displayHeight/1.5, 500, 100)
-  nImage2 = createSprite(displayWidth/8, displayHeight/1.5, 500, 100)
 }
 function police() {
-  p-background = createSprite(displayWidth/2, displayHeight/2, displayWidth, displayHeight)
-  pImage = createSprite(displayWidth/1.5, displayHeight/1.5, 500, 100)
-  pImage2 = createSprite(displayWidth/8, displayHeight/1.5, 500, 100)
-
+  
   pImage.addImage("po", policee)
   pImage2.addImage("po2", policee2)
 }
 function health() {
-  h-background = createSprite(displayWidth/2, displayHeight/2, displayWidth, displayHeight)
-  hImage = createSprite(displayWidth/1.5, displayHeight/1.5, 500, 100)
-  hImage2 = createSprite(displayWidth/8, displayHeight/1.5, 500, 100)
+  
 }
 function education() {
-  e-background = createSprite(displayWidth/2, displayHeight/2, displayWidth, displayHeight)
-  eImage = createSprite(displayWidth/1.5, displayHeight/1.5, 500, 100)
-  eImage2 = createSprite(displayWidth/8, displayHeight/1.5, 500, 100)
+  
 }
 function otherGames() {
- g1 = createSprite(displayWidth/8, displayHeight/5, 100, 100)
- g2 = createSprite(displayWidth/8, displayHeight/2.5, 100, 100) 
- g3 = createSprite(displayWidth/16, displayHeight/5, 100, 100)
- g4 = createSprite(displayWidth/16, displayHeight/2.5, 100, 100)
+ 
 }
 function g1() {
 var border1 = createSprite(200, 410, 400, 10);
@@ -612,9 +663,11 @@ thief.shapeColor = "white";
     laser1.velocityY = 0;
     laser2.velocityY = 0;
   }
-  }
-  function g2() {
-  var score = 0;
+}
+
+
+function g2() {
+var score = 0;
 var sophia = createSprite(372.5, 350, 10, 10);
 var border6 = createSprite(80, 1, 70, 2);
 var border1 = createSprite(395, 200, 20, 400);
@@ -1014,3 +1067,4 @@ border6.shapeColor = "pink";
     sophia.y = 350;
   }
 }
+
